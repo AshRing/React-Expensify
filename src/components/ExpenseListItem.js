@@ -8,7 +8,7 @@ const ExpenseListItem = ({id, description, amount, createdAt}) => {
     return ( //destructure object passed in to grab these properties off of it
         <div>
             <Link to={`/edit/${id}`}><h3>{description}</h3></Link>
-            <p>{amount} - {createdAtMoment.format('MMM D, YYYY')}</p>
+            <p>${amount} - {createdAtMoment.format('MMMM Do, YYYY')}</p>
         </div>
     );
 }
