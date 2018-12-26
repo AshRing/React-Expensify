@@ -11,8 +11,8 @@
     "build:prod": "webpack -p --env production",
     "update": "jest -u",
     "test": "jest --config=jest.config.json --watch",
-    "start": "node server/server.js",  //with this in place, heroku will run the server
-    "heroku-postbuild": "npm run build:prod" //runs after heroku installs all the dependencies. Put build commands here. This runs webpack production build on the heroku server
+    "start": "node server/server.js",
+    "heroku-postbuild": "npm run build:prod"
   },
   "author": "",
   "license": "ISC",
