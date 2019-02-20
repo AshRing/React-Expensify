@@ -1,5 +1,7 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 
 //function returns webpack config object when called. Advantageous b/c you can call function with arguments
 module.exports = (env) => {
@@ -29,6 +31,12 @@ module.exports = (env) => {
                             }
                         },
                         {
+                            loader: 'postcss-loader',
+                            options: {
+                                sourceMap: true
+                            }  
+                        },
+                        {
                             loader: 'sass-loader',
                             options: {
                                 sourceMap: true
@@ -39,7 +47,14 @@ module.exports = (env) => {
             }]
         },
         plugins: [
-            CSSExtract
+            CSSExtract,
+            new webpack.LoaderOptionsPlugin({
+                options: {
+                    postcss: [
+                        autoprefixer()
+                    ]
+                }
+            })
         ],
         devtool: isProduction ? 'source-map' : 'inline-source-map', //source-map takes longer to build, but is better for production
         devServer: {
