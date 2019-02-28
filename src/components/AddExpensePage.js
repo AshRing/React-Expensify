@@ -1,12 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ExpenseForm from './ExpenseForm';
-import {addExpense} from '../actions/expenses';
+import {startAddExpense} from '../actions/expenses';
 
 export class AddExpensePage extends React.Component {   //do this to avoid inline functions. Export to allow us to test it unconnected
     onSubmit = (expense) => {  //gets passed the expense object. used this function as a prop so we can re-use expenseform to edit an expense
         //props.dispatch(addExpense(expense));
-        this.props.addExpense(expense);
+        this.props.startAddExpense(expense);
         this.props.history.push('/');
     }
 
@@ -38,7 +38,7 @@ export class AddExpensePage extends React.Component {   //do this to avoid inlin
 // );
 
 const mapDispatchToProps = (dispatch) => ({  //this allows us to extract Redux store dispatch functions away from the component
-    addExpense: (expense) => dispatch(addExpense(expense))
+    startAddExpense: (expense) => dispatch(startAddExpense(expense))
 });
 
 export default connect(undefined, mapDispatchToProps)(AddExpensePage);
