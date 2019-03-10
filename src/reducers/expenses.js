@@ -24,6 +24,8 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
                     return expense;    //no change to expense unless its a match
                 }
             });
+        case 'SET_EXPENSES':
+            return action.expenses; //returns the expenses array
         default:
             return state;
     }
