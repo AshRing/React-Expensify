@@ -3,13 +3,13 @@ import {shallow} from 'enzyme';
 import {EditExpensePage} from '../../components/EditExpensePage';
 import expenses from '../fixtures/expenses';
 
-let editExpense, removeExpense, history, wrapper;
+let editExpense, startRemoveExpense, history, wrapper;
 
 beforeEach(() => {  //jest runs this function before each test case. We broke this out because we were reusing code. This will make our test cases more concise
     editExpense = jest.fn();
     removeExpense = jest.fn();
     history = {push: jest.fn()};
-    wrapper = shallow(<EditExpensePage expense={expenses[1]} editExpense={editExpense} removeExpense={removeExpense} history={history} />);
+    wrapper = shallow(<EditExpensePage expense={expenses[1]} editExpense={editExpense} startRemoveExpense={startRemoveExpense} history={history} />);
 });
 
 test('should render EditExpensePage correctly', () => {
@@ -22,8 +22,8 @@ test('should handle editExpense', () => {
     expect(editExpense).toHaveBeenLastCalledWith(expenses[1].id, expenses[1]);
 });
 
-test('should handle removeExpense', () => {
+test('should handle startRemoveExpense', () => {
     wrapper.find('button').simulate('click');  //simulates a button click
     expect(history.push).toHaveBeenLastCalledWith('/');
-    expect(removeExpense).toHaveBeenLastCalledWith({id: expenses[1].id});
+    expect(startRemoveExpense).toHaveBeenLastCalledWith({id: expenses[1].id});
 })
